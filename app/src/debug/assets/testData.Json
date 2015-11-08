@@ -2,16 +2,19 @@
   {
     "account" : "CHQ:",
     "balance" : "$ 5 000.00",
-    "balance_diff" : "+ $ 100"
+    "balance_diff" : "+ $ 100",
+    "time" : "6d5h"
   },
   {
     "account" : "SAV:",
     "balance" : "$ 25 510.45",
-    "balance_diff" : "+ $ 1500"
+    "balance_diff" : "+ $ 1500",
+    "time" : "10d9h"
   },
   {
     "account" : "VISA:",
     "balance" : "$ 4 999.99",
-    "balance_diff" : "+ $ 100"
+    "balance_diff" : "+ $ 100",
+    "time" : "0h"
   }
 ]

@@ -24,7 +24,8 @@ public class NewAppWidgetUpdateService extends Service {
     private static final String TAG = NewAppWidgetUpdateService.class.getSimpleName();
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private AQuery aquery;
-    private String remoteJsonUrl = "";
+    private String remoteJsonUrl =
+            "http://raw.githubusercontent.com/tealmeld/rbcaccountswidget/slave/app/src/debug/assets/testData.Json";
 
     public static ArrayList<NewAppWidgetListItem> itemList;
 
@@ -46,9 +47,11 @@ public class NewAppWidgetUpdateService extends Service {
     }
 
     private void fetchDataFromWeb() {
+        Log.d(TAG, "fetchDataFromWeb() called");
         aquery.ajax(remoteJsonUrl, String.class, new AjaxCallback<String>() {
             @Override
             public void callback(String url, String object, AjaxStatus status) {
+                Log.d(TAG, "AjaxStatus: " + status.getMessage() + " " + status.getError());
                 processResult(result);
                 super.callback(url, object, status);
             }
@@ -58,21 +61,25 @@ public class NewAppWidgetUpdateService extends Service {
     private void processResult(String result) {
         Log.d(TAG, "result: " + result);
         itemList = new ArrayList<NewAppWidgetListItem>();
-        try {
-            JSONArray jsonArray = new JSONArray(result);
-            int length = jsonArray.length();
-            for (int i = 0; i < length; i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                NewAppWidgetListItem item = new NewAppWidgetListItem();
-                item.account = jsonObject.getString("account");
-                item.balance = jsonObject.getString("balance");
-                item.balance_diff = jsonObject.getString("balance_diff");
-                item.time = jsonObject.getString("time");
+        if (result != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+                int length = jsonArray.length();
+                for (int i = 0; i < length; i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    NewAppWidgetListItem item = new NewAppWidgetListItem();
+                    item.account = jsonObject.getString("account");
+                    item.balance = jsonObject.getString("balance");
+                    item.balance_diff = jsonObject.getString("balance_diff");
+                    item.time = jsonObject.getString("time");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
+            populateWidget();
+        } else {
+            this.stopSelf();
         }
-        populateWidget();
     }
 
     private void populateWidget() {

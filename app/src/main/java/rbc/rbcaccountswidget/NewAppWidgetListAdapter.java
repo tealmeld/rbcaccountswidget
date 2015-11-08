@@ -23,7 +23,7 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
         this.mContext = context;
         mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 AppWidgetManager.INVALID_APPWIDGET_ID);
-        populateList();
+//        populateList();
     }
 
     private void populateList() {
