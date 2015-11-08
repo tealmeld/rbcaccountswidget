@@ -22,14 +22,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="165dp"
         android:text="+ $ 250.00"
         android:id="@+id/widget_list_row_bal_diff_textview"
         android:textColor="#ffffff" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="220dp"
+        android:layout_marginLeft="250dp"
         android:text="5d6h"
         android:id="@+id/widget_list_row_time_textview"
         android:textColor="#ffffff" />

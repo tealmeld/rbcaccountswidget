@@ -13,7 +13,12 @@ import java.util.ArrayList;
  * Created by User on 11/7/2015.
  */
 public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFactory {
+
     private static final String TAG = NewAppWidgetListAdapter.class.getSimpleName();
+    private static final long BAL_SMALL = 2000;
+    private static final long BAL_MED   = 20000;
+    private static final long BAL_LRG   = 200000;
+
     private ArrayList<NewAppWidgetListItem> itemList = new ArrayList<>();
     private Context mContext = null;
     private int mAppWidgetId;
@@ -59,7 +64,39 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
                 Utils.FormatCurrency(item.balance_diff));
 
         remoteView.setTextViewText(R.id.widget_list_row_time_textview, item.time);
+
+        // color views
+
+        if (item.balance_diff > 0) {
+            if (item.balance_diff > BAL_LRG) {
+
+            } else if (item.balance_diff > BAL_MED) {
+
+            } else if (item.balance_diff > BAL_SMALL) {
+
+            } else {
+
+            }
+        } else {
+            if (item.balance_diff < -1 * BAL_LRG) {
+
+            } else if (item.balance_diff < -1 * BAL_MED) {
+
+            } else if (item.balance_diff < -1 * BAL_SMALL) {
+
+            } else {
+
+            }
+        }
+
         return remoteView;
+    }
+
+    private void setColor(RemoteViews remoteViews, int color) {
+        remoteViews.setInt(R.id.widget_list_row_acc_name_textview, "textColor", color);
+        remoteViews.setInt(R.id.widget_list_row_acc_bal_textview, "textColor", color);
+        remoteViews.setInt(R.id.widget_list_row_bal_diff_textview, "textColor", color);
+        remoteViews.setInt(R.id.widget_list_row_time_textview, "textColor", color);
     }
 
     @Override
