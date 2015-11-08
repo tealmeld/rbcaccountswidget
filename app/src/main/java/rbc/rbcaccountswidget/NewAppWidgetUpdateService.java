@@ -69,8 +69,10 @@ public class NewAppWidgetUpdateService extends Service {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     NewAppWidgetListItem item = new NewAppWidgetListItem();
                     item.account = jsonObject.getString("account");
-                    item.balance = jsonObject.getString("balance");
-                    item.balance_diff = jsonObject.getString("balance_diff");
+                    item.balance = jsonObject.getLong("balance");
+                    item.balance_diff = jsonObject.getLong("balance_diff");
+//                    item.balance = jsonObject.getString("balance");
+//                    item.balance_diff = jsonObject.getString("balance_diff");
                     item.time = jsonObject.getString("time");
                     itemList.add(item);
                 }

@@ -52,8 +52,12 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
                 mContext.getPackageName(), R.layout.widget_list_row);
         NewAppWidgetListItem item = itemList.get(position);
         remoteView.setTextViewText(R.id.widget_list_row_acc_name_textview, item.account);
-        remoteView.setTextViewText(R.id.widget_list_row_acc_bal_textview, item.balance);
-        remoteView.setTextViewText(R.id.widget_list_row_bal_diff_textview, item.balance_diff);
+        remoteView.setTextViewText(R.id.widget_list_row_acc_bal_textview,
+                Utils.FormatCurrency(item.balance));
+
+        remoteView.setTextViewText(R.id.widget_list_row_bal_diff_textview,
+                Utils.FormatCurrency(item.balance_diff));
+
         remoteView.setTextViewText(R.id.widget_list_row_time_textview, item.time);
         return remoteView;
     }

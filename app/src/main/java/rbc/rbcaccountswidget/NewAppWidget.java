@@ -27,17 +27,6 @@ public class NewAppWidget extends AppWidgetProvider {
             serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                     appWidgetIds[i]);
             context.startService(serviceIntent);
-
-//            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-//                    R.layout.new_app_widget);
-
-//            Intent svcIntent = new Intent(context, NewAppWidgetService.class);
-//            svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
-//            svcIntent.setData(Uri.parse(svcIntent.toUri(Intent.URI_INTENT_SCHEME)));
-//            remoteViews.setRemoteAdapter(appWidgetIds[i], R.id.listViewWidget, svcIntent);
-//            remoteViews.setRemoteAdapter(R.id.listViewWidget, svcIntent);
-//            appWidgetManager.updateAppWidget(appWidgetIds[i], remoteViews);
-            //updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds);
     }

@@ -5,7 +5,7 @@ package rbc.rbcaccountswidget;
  */
 public class NewAppWidgetListItem {
     public String account;
-    public String balance;
-    public String balance_diff;
+    public long balance;
+    public long balance_diff;
     public String time;
 }
