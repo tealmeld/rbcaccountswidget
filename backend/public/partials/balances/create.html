@@ -1,0 +1,57 @@
+<div ng-controller="CreateBalanceCtrl as cbc">
+    <h1>Create Balance</h1>
+
+    <form id="CreateBalanceForm" name="CreateBalanceForm" class="form-horizontal" role="form"
+          ng-submit="cbc.createBalance()">
+        <legend class="sm-col-12">Balance Information</legend>
+
+        <div class="form-group">
+            <label id="lbl_account" for="account" class="col-sm-4 control-label">Account</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="account" id="account" placeholder=""
+                       ng-model="cbc.balance.account">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_balance" for="balance" class="col-sm-4 control-label">Balance</label>
+
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="balance" id="balance" placeholder=""
+                       ng-model="cbc.balance.balance">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_balanceDiff" for="balanceDiff" class="col-sm-4 control-label">Balance Difference</label>
+
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="balanceDiff" id="balanceDiff" placeholder=""
+                       ng-model="cbc.balance.balanceDiff">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_time" for="time" class="col-sm-4 control-label">Time</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="time" id="time" placeholder=""
+                       ng-model="cbc.balance.time">
+            </div>
+        </div>
+
+        <pre>{{ cbc.balance | json }}</pre>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8 text-right">
+                <a ng-href="/#/" id="btn_cancel" class="btn btn-warning">Cancel</a>
+
+                <button type="submit" class="btn btn-success" id="btn_create">Create Balance</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+

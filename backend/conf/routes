@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+#
+# Note: @controllers syntax signifies the actual controller instance, retrieved via GlobalSettings.getController().
+# ~~~~
+
+# Single endpoint for serving AngularJS
+GET     /                           @controllers.Application.index
+GET     /randomUUID                 @controllers.Application.randomUUID
+
+# Balance management API
+GET     /balances                    @controllers.Balances.findBalances
+POST    /balance                     @controllers.Balances.createBalance
+PUT     /balance/:account            @controllers.Balances.updateBalance(account: String)
+PUT     /balanceLess/:account        @controllers.Balances.deleteBalance(account: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
