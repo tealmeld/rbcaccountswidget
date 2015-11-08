@@ -23,18 +23,27 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
         this.mContext = context;
         mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 AppWidgetManager.INVALID_APPWIDGET_ID);
-//        populateList();
+        populateList();
     }
 
+//    private void populateList() {
+//        for (int i = 0; i < 11; i++) {
+//            NewAppWidgetListItem item = new NewAppWidgetListItem();
+//            item.account = "CHQ" + i + ":";
+//            item.balance = "$ 2 50" + i + ".00";
+//            item.balance_diff = "+ $ 100";
+//            item.time = "5d9h";
+//            itemList.add(item);
+//        }
+//    }
+
     private void populateList() {
-        for (int i = 0; i < 11; i++) {
-            NewAppWidgetListItem item = new NewAppWidgetListItem();
-            item.account = "CHQ" + i + ":";
-            item.balance = "$ 2 50" + i + ".00";
-            item.balance_diff = "+ $ 100";
-            item.time = "5d9h";
-            itemList.add(item);
-        }
+        if (NewAppWidgetUpdateService.itemList !=null )
+            itemList = (ArrayList<NewAppWidgetListItem>) NewAppWidgetUpdateService.itemList
+                    .clone();
+        else
+            itemList = new ArrayList<>();
+
     }
 
     @Override

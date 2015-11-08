@@ -72,6 +72,7 @@ public class NewAppWidgetUpdateService extends Service {
                     item.balance = jsonObject.getString("balance");
                     item.balance_diff = jsonObject.getString("balance_diff");
                     item.time = jsonObject.getString("time");
+                    itemList.add(item);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
