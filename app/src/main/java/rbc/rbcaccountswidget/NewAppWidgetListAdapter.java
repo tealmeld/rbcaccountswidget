@@ -3,6 +3,7 @@ package rbc.rbcaccountswidget;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -43,7 +44,8 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
 //    }
 
     private void populateList() {
-        if (NewAppWidgetUpdateService.itemList !=null )
+        Log.d(TAG, "populateList() called");
+        if (NewAppWidgetUpdateService.itemList != null)
             itemList = (ArrayList<NewAppWidgetListItem>) NewAppWidgetUpdateService.itemList
                     .clone();
         else
@@ -69,23 +71,23 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
 
         if (item.balance_diff > 0) {
             if (item.balance_diff > BAL_LRG) {
-
+                setColor(remoteView, R.color.colorAccPosXLrg);
             } else if (item.balance_diff > BAL_MED) {
-
+                setColor(remoteView, R.color.colorAccPosLrg);
             } else if (item.balance_diff > BAL_SMALL) {
-
+                setColor(remoteView, R.color.colorAccPosMed);
             } else {
-
+                setColor(remoteView, R.color.colorAccPosSmall);
             }
         } else {
             if (item.balance_diff < -1 * BAL_LRG) {
-
+                setColor(remoteView, R.color.colorAccNegXLrg);
             } else if (item.balance_diff < -1 * BAL_MED) {
-
+                setColor(remoteView, R.color.colorAccNegLrg);
             } else if (item.balance_diff < -1 * BAL_SMALL) {
-
+                setColor(remoteView, R.color.colorAccNegMed);
             } else {
-
+                setColor(remoteView, R.color.colorAccNegSmall);
             }
         }
 
@@ -93,10 +95,19 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
     }
 
     private void setColor(RemoteViews remoteViews, int color) {
-        remoteViews.setInt(R.id.widget_list_row_acc_name_textview, "textColor", color);
-        remoteViews.setInt(R.id.widget_list_row_acc_bal_textview, "textColor", color);
-        remoteViews.setInt(R.id.widget_list_row_bal_diff_textview, "textColor", color);
-        remoteViews.setInt(R.id.widget_list_row_time_textview, "textColor", color);
+        /*
+        remoteViews.setTextColor(R.id.widget_list_row_acc_name_textview,
+                ContextCompat.getColor(mContext, color));
+
+        remoteViews.setTextColor(R.id.widget_list_row_acc_bal_textview,
+                ContextCompat.getColor(mContext, color));
+        */
+        remoteViews.setTextColor(R.id.widget_list_row_bal_diff_textview,
+                ContextCompat.getColor(mContext, color));
+        /*
+        remoteViews.setTextColor(R.id.widget_list_row_time_textview,
+                ContextCompat.getColor(mContext, color));
+        */
     }
 
     @Override
@@ -106,7 +117,8 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public void onDataSetChanged() {
-
+        Log.d(TAG, "onDataSetChanged() called");
+        populateList();
     }
 
     @Override

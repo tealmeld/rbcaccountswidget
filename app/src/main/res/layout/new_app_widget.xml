@@ -2,20 +2,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/widget_margin"
-    android:background="@drawable/widget_cornered_background">
-
+    android:background="@drawable/blue_gradient">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:src="@drawable/rbc_med" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:src="@drawable/rbc_med" />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/widget_refreshButton"
+                    android:src="@drawable/ic_autorenew_white_48dp"
+                    android:background="#00ffffff" />
 
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerInParent="true"
+                    android:visibility="invisible"
+                    android:id="@+id/widget_progressBar" />
+            </RelativeLayout>
+
+        </LinearLayout>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,107 +56,6 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:visibility="gone" />
-
-    <!--
-    <RelativeLayout
-        android:layout_marginLeft="15dp"
-        android:layout_width="200dp"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CHQ:"
-            android:id="@+id/textView00"
-            android:textColor="#ffffff"
-            android:autoText="false"
-            android:layout_marginRight="20dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/textView00"
-            android:text="$ 2 300.00"
-            android:id="@+id/textView01"
-            android:textColor="#ffffff" />
-
-        <ImageView
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/textView00"
-            android:layout_marginBottom="5dp"
-            android:id="@+id/line0"
-            android:background="#b6e1ff" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line0"
-            android:text="SAV:"
-            android:id="@+id/textView10"
-            android:textColor="#ffffff"
-            android:autoText="false"
-            android:layout_marginRight="20dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line0"
-            android:layout_alignLeft="@+id/textView01"
-            android:text="$ 15 000.00"
-            android:id="@+id/textView11"
-            android:textColor="#ffffff" />
-
-        <ImageView
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/textView10"
-            android:layout_marginBottom="5dp"
-            android:id="@+id/line1"
-            android:background="#b6e1ff" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line1"
-            android:text="VISA:"
-            android:id="@+id/textView20"
-            android:textColor="#ffffff"
-            android:autoText="false"
-            android:layout_marginRight="20dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line1"
-            android:layout_alignLeft="@+id/textView11"
-            android:text="$ -145.23"
-            android:id="@+id/textView21"
-            android:textColor="#ffc6c6" />
-
-        <ImageView
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/textView20"
-            android:background="#b6e1ff" />
-    </RelativeLayout>
--->
 </LinearLayout>
 
-
-    <!--
-        <TextView
-            android:id="@+id/appwidget_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/appwidget_text"
-            android:textColor="#ffffff"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            android:layout_margin="8dp"
-            android:contentDescription="@string/appwidget_text"
-            android:background="#09C" />
-    -->
 </RelativeLayout>

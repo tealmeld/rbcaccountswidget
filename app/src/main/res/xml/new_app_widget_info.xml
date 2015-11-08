@@ -10,7 +10,3 @@
     android:initialKeyguardLayout="@layout/new_app_widget">
 
 </appwidget-provider>
-
-<!--
-android:configure="rbc.rbcaccountswidget.NewAppWidgetConfigureActivity"
--->

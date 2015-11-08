@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/widget_cornered_background">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
+    android:background="@drawable/widget_cornered_shadow_background">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:text="CHQ:"
         android:id="@+id/widget_list_row_acc_name_textview"
         android:textColor="#ffffff" />
@@ -15,22 +22,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="70dp"
         android:text="$ 2 300.00"
         android:id="@+id/widget_list_row_acc_bal_textview"
         android:textColor="#ffffff" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="165dp"
-        android:text="+ $ 250.00"
+        android:layout_marginLeft="175dp"
+        android:text="250.00"
         android:id="@+id/widget_list_row_bal_diff_textview"
         android:textColor="#ffffff" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="250dp"
+        android:layout_marginLeft="260dp"
         android:text="5d6h"
         android:id="@+id/widget_list_row_time_textview"
         android:textColor="#ffffff" />
 </RelativeLayout>
+</LinearLayout>

@@ -24,8 +24,9 @@ public class NewAppWidgetUpdateService extends Service {
     private static final String TAG = NewAppWidgetUpdateService.class.getSimpleName();
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private AQuery aquery;
+//    private String remoteJsonUrl = "http://192.168.1.19:9000/balances";
     private String remoteJsonUrl =
-            "http://raw.githubusercontent.com/tealmeld/rbcaccountswidget/slave/app/src/debug/assets/testData.Json";
+            "http://192.168.1.3:3000";
 
     public static ArrayList<NewAppWidgetListItem> itemList;
 
@@ -48,6 +49,7 @@ public class NewAppWidgetUpdateService extends Service {
 
     private void fetchDataFromWeb() {
         Log.d(TAG, "fetchDataFromWeb() called");
+        notifyIncomingData();
         aquery.ajax(remoteJsonUrl, String.class, new AjaxCallback<String>() {
             @Override
             public void callback(String url, String object, AjaxStatus status) {
@@ -70,7 +72,7 @@ public class NewAppWidgetUpdateService extends Service {
                     NewAppWidgetListItem item = new NewAppWidgetListItem();
                     item.account = jsonObject.getString("account");
                     item.balance = jsonObject.getLong("balance");
-                    item.balance_diff = jsonObject.getLong("balance_diff");
+                    item.balance_diff = jsonObject.getLong("balanceDiff");
 //                    item.balance = jsonObject.getString("balance");
 //                    item.balance_diff = jsonObject.getString("balance_diff");
                     item.time = jsonObject.getString("time");
@@ -78,20 +80,37 @@ public class NewAppWidgetUpdateService extends Service {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                notifyNetworkError();
             }
             populateWidget();
         } else {
+            notifyNetworkError();
             this.stopSelf();
         }
     }
 
+    private void notifyIncomingData() {
+        Log.d(TAG, "notifyIncomingData() called");
+        notifyWidget(NewAppWidget.ACTION_DATA_INCOMING);
+    }
+
+    private void notifyNetworkError() {
+        Log.d(TAG, "notifyNetworkError() called");
+        notifyWidget(NewAppWidget.ACTION_NETWORK_ERROR);
+        this.stopSelf();
+    }
+
     private void populateWidget() {
         Log.d(TAG, "populateWidget() called");
+        notifyWidget(NewAppWidget.ACTION_DATA_RECEIVED);
+        this.stopSelf();
+    }
+
+    private void notifyWidget(String action) {
         Intent widgetUpdateIntent = new Intent();
-        widgetUpdateIntent.setAction(NewAppWidget.ACTION_DATA_RECEIVED);
+        widgetUpdateIntent.setAction(action);
         widgetUpdateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 appWidgetId);
         sendBroadcast(widgetUpdateIntent);
-        this.stopSelf();
     }
 }

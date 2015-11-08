@@ -2,20 +2,20 @@
   {
     "account" : "CHQ:",
     "balance" : "500000",
-    "balance_diff" : "-10000",
+    "balancediff" : "-10000",
     "time" : "6d5h"
   },
   {
     "account" : "SAV:",
     "balance" : "132551045",
-    "balance_diff" : "1150000",
+    "balancediff" : "1150000",
     "time" : "10d9h"
   },
 
   {
     "account" : "VISA:",
     "balance" : "499999",
-    "balance_diff" : "29",
+    "balancediff" : "29",
     "time" : "0h"
   }
 ]

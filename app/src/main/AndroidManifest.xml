@@ -16,18 +16,14 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="rbc.rbcaccountswidget.ACTION_DATA_RECEIVED" />
+                <action android:name="rbc.rbcaccountswidget.ACTION_DATA_INCOMING" />
+                <action android:name="rbc.rbcaccountswidget.ACTION_NETWORK_ERROR" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/new_app_widget_info" />
         </receiver>
-
-        <activity android:name=".NewAppWidgetConfigureActivity" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>1
-        </activity>
 
         <service
             android:name=".NewAppWidgetService"
