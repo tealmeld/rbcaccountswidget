@@ -1,14 +1,18 @@
-package rbc.rbcaccountswidget;
+package rbc.rbcaccountswidget.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import java.util.ArrayList;
+
+import rbc.rbcaccountswidget.R;
+import rbc.rbcaccountswidget.Utils;
 
 /**
  * Created by User on 11/7/2015.
@@ -32,17 +36,6 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
         populateList();
     }
 
-//    private void populateList() {
-//        for (int i = 0; i < 11; i++) {
-//            NewAppWidgetListItem item = new NewAppWidgetListItem();
-//            item.account = "CHQ" + i + ":";
-//            item.balance = "$ 2 50" + i + ".00";
-//            item.balance_diff = "+ $ 100";
-//            item.time = "5d9h";
-//            itemList.add(item);
-//        }
-//    }
-
     private void populateList() {
         Log.d(TAG, "populateList() called");
         if (NewAppWidgetUpdateService.itemList != null)
@@ -60,16 +53,17 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
         NewAppWidgetListItem item = itemList.get(position);
         remoteView.setTextViewText(R.id.widget_list_row_acc_name_textview, item.account);
         remoteView.setTextViewText(R.id.widget_list_row_acc_bal_textview,
-                Utils.FormatCurrency(item.balance));
+                Utils.AddDollarSign(Utils.FormatCurrency(item.balance)));
 
         remoteView.setTextViewText(R.id.widget_list_row_bal_diff_textview,
-                Utils.FormatCurrency(item.balance_diff));
+                Utils.NoMinus(Utils.FormatCurrency(item.balance_diff)));
 
         remoteView.setTextViewText(R.id.widget_list_row_time_textview, item.time);
 
         // color views
 
         if (item.balance_diff > 0) {
+            showUpArrow(remoteView);
             if (item.balance_diff > BAL_LRG) {
                 setColor(remoteView, R.color.colorAccPosXLrg);
             } else if (item.balance_diff > BAL_MED) {
@@ -80,6 +74,7 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
                 setColor(remoteView, R.color.colorAccPosSmall);
             }
         } else {
+            showDownArrow(remoteView);
             if (item.balance_diff < -1 * BAL_LRG) {
                 setColor(remoteView, R.color.colorAccNegXLrg);
             } else if (item.balance_diff < -1 * BAL_MED) {
@@ -94,20 +89,22 @@ public class NewAppWidgetListAdapter implements RemoteViewsService.RemoteViewsFa
         return remoteView;
     }
 
-    private void setColor(RemoteViews remoteViews, int color) {
-        /*
-        remoteViews.setTextColor(R.id.widget_list_row_acc_name_textview,
-                ContextCompat.getColor(mContext, color));
+    private void showUpArrow(RemoteViews views) {
+        views.setViewVisibility(R.id.widget_arrow_up_imageView, View.VISIBLE);
+        views.setViewVisibility(R.id.widget_arrow_down_imageView, View.INVISIBLE);
+    }
 
-        remoteViews.setTextColor(R.id.widget_list_row_acc_bal_textview,
-                ContextCompat.getColor(mContext, color));
-        */
+    private void showDownArrow(RemoteViews views) {
+        views.setViewVisibility(R.id.widget_arrow_up_imageView, View.INVISIBLE);
+        views.setViewVisibility(R.id.widget_arrow_down_imageView, View.VISIBLE);
+    }
+
+    private void setColor(RemoteViews remoteViews, int color) {
         remoteViews.setTextColor(R.id.widget_list_row_bal_diff_textview,
                 ContextCompat.getColor(mContext, color));
-        /*
-        remoteViews.setTextColor(R.id.widget_list_row_time_textview,
-                ContextCompat.getColor(mContext, color));
-        */
+
+        remoteViews.setInt(R.id.widget_arrow_down_imageView, "setColorFilter", ContextCompat.getColor(mContext, color));
+        remoteViews.setInt(R.id.widget_arrow_up_imageView, "setColorFilter", ContextCompat.getColor(mContext, color));
     }
 
     @Override

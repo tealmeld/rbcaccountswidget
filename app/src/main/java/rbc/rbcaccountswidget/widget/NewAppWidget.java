@@ -1,4 +1,4 @@
-package rbc.rbcaccountswidget;
+package rbc.rbcaccountswidget.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -7,9 +7,15 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import rbc.rbcaccountswidget.R;
 
 /**
  * Implementation of App Widget functionality.
@@ -24,7 +30,7 @@ public class NewAppWidget extends AppWidgetProvider {
     public static int randomNumber = 1 + (int)(Math.random()*1000000);
 
     @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+    public void onUpdate(final Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         Log.d(TAG, "onUpdate called");
         final int N = appWidgetIds.length;
@@ -34,9 +40,27 @@ public class NewAppWidget extends AppWidgetProvider {
                     appWidgetIds[i]);
             context.startService(serviceIntent);
 
-            RemoteViews widget = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
+            final RemoteViews widget = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
             addRefreshButtonOnClickEvent(context, widget);
         }
+        final Handler handler = new Handler();
+        Timer timer = new Timer();
+
+        TimerTask task = new TimerTask() {
+
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    public void run() {
+                        // send a broadcast to the widget.
+                        Intent clickIntent = new Intent(context, NewAppWidgetUpdateService.class);
+                        context.startService(clickIntent);
+                    }
+                });
+            }
+        };
+        timer.scheduleAtFixedRate(task, 0, 5000);
+
         super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 

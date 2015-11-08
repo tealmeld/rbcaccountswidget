@@ -5,6 +5,18 @@ package rbc.rbcaccountswidget;
  */
 public class Utils {
 
+    public static String NoMinus(String currency) {
+        if (currency.startsWith("-")) {
+            return currency.substring(1);
+        } else {
+            return currency;
+        }
+    }
+
+    public static String AddDollarSign(String currency) {
+        return "$ " + currency;
+    }
+
     public static String FormatCurrency(Long value) {
         String s = value.toString();
         int len = s.length();
@@ -22,6 +34,6 @@ public class Utils {
             s = "0.0" + s;
         }
 
-        return "$ " + s;
+        return s;
     }
 }

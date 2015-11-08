@@ -1,4 +1,4 @@
-package rbc.rbcaccountswidget;
+package rbc.rbcaccountswidget.widget;
 
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
@@ -24,9 +24,9 @@ public class NewAppWidgetUpdateService extends Service {
     private static final String TAG = NewAppWidgetUpdateService.class.getSimpleName();
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private AQuery aquery;
-//    private String remoteJsonUrl = "http://192.168.1.19:9000/balances";
-    private String remoteJsonUrl =
-            "http://192.168.1.3:3000";
+    private String remoteJsonUrl = "http://192.168.1.19:9000/balances";
+//    private String remoteJsonUrl =
+//            "http://192.168.1.3:3000";
 
     public static ArrayList<NewAppWidgetListItem> itemList;
 

@@ -1,4 +1,4 @@
-package rbc.rbcaccountswidget;
+package rbc.rbcaccountswidget.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;

@@ -11,8 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-
-        <receiver android:name=".NewAppWidget" >
+        <receiver android:name=".widget.NewAppWidget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="rbc.rbcaccountswidget.ACTION_DATA_RECEIVED" />
@@ -26,9 +25,15 @@
         </receiver>
 
         <service
-            android:name=".NewAppWidgetService"
+            android:name=".widget.NewAppWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-        <service android:name=".NewAppWidgetUpdateService" />
+        <service android:name=".widget.NewAppWidgetUpdateService" />
+
+        <activity
+            android:name=".activities.AccountSettings"
+            android:label="@string/title_activity_account_settings"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

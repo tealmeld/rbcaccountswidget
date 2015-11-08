@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Starbucks Coffee"
+        android:id="@+id/acc_settings_list_item" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="-$50"
+        android:id="@+id/acc_settings_list_bal_diff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="1d2h"
+        android:id="@+id/acc_settings_list_time" />
+</RelativeLayout>
