@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.widget.RemoteViews;
 
+import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.XYPlot;
@@ -74,13 +75,18 @@ public class NewAppWidget extends AppWidgetProvider {
         XYPlot plot = new XYPlot(context, "");
         //plot.getLayoutParams().height = 100;
         //plot.getLayoutParams().width = 100;
-        plot.measure(450, 250);
-        plot.layout(0, 0, 450, 250);
+        plot.measure(550, 250);
+        plot.layout(0, 0, 550, 250);
         plot.setDrawingCacheEnabled(true);
         //plot.setBackgroundColor(Color.GREEN);
         plot.getTitleWidget().setVisible(false);
         plot.getLegendWidget().setVisible(false);
-        plot.setDrawingCacheBackgroundColor(Color.TRANSPARENT);
+
+        plot.getGraphWidget().getBackgroundPaint().setColor(Color.TRANSPARENT);
+        plot.getGraphWidget().getGridBackgroundPaint().setColor(Color.TRANSPARENT);
+        plot.getBackgroundPaint().setColor(Color.argb(30,255,255,255));
+
+
         // display a week day for each points
         plot.setDomainValueFormat(new Format() {
 
@@ -113,10 +119,12 @@ public class NewAppWidget extends AppWidgetProvider {
             series1Numbers[i] = (Number)(Math.random()*300 + 800);
         }
 
-        plot.setRangeTopMax(1500);
-        plot.setRangeBottomMin(800);
+        //plot.setRangeTopMax(1500);
+        //plot.setRangeBottomMin(800);
 
         plot.setDomainStep(XYStepMode.SUBDIVIDE, series1Numbers.length);
+        //plot.setDomainLowerBoundary(700, BoundaryMode.FIXED);
+        
         // Turn the above arrays into XYSeries':
         XYSeries series1 = new SimpleXYSeries(
                 Arrays.asList(series1Numbers),          // SimpleXYSeries takes a List so turn our array into a List
@@ -128,7 +136,7 @@ public class NewAppWidget extends AppWidgetProvider {
                 Color.rgb(0, 56, 163),                   // line color
                 Color.rgb(243, 209, 77),                   // point color
                 null, null);                                  // fill color (none)
-
+        series1Format.getLinePaint().setStrokeWidth(3);
 
         // add a new series' to the xyplot:
         plot.addSeries(series1, series1Format);
