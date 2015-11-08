@@ -2,20 +2,121 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/widget_margin"
-    android:background="#09C">
+    android:background="@drawable/widget_cornered_background">
 
-    <TextView
-        android:id="@+id/appwidget_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        android:layout_margin="8dp"
-        android:contentDescription="@string/appwidget_text"
-        android:background="#09C" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/rbc_med" />
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="200dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHQ:"
+                android:id="@+id/textView00"
+                android:textColor="#ffffff"
+                android:autoText="false"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textView00"
+                android:text="$ 2 300.00"
+                android:id="@+id/textView01"
+                android:textColor="#ffffff" />
+
+            <ImageView
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/textView00"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/line0"
+                android:background="#b6e1ff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line0"
+                android:text="SAV:"
+                android:id="@+id/textView10"
+                android:textColor="#ffffff"
+                android:autoText="false"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line0"
+                android:layout_alignLeft="@+id/textView01"
+                android:text="$ 15 000.00"
+                android:id="@+id/textView11"
+                android:textColor="#ffffff" />
+
+            <ImageView
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/textView10"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/line1"
+                android:background="#b6e1ff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line1"
+                android:text="VISA:"
+                android:id="@+id/textView20"
+                android:textColor="#ffffff"
+                android:autoText="false"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line1"
+                android:layout_alignLeft="@+id/textView11"
+                android:text="$ -145.23"
+                android:id="@+id/textView21"
+                android:textColor="#ffc6c6" />
+
+            <ImageView
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/textView20"
+                android:background="#b6e1ff" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--
+        <TextView
+            android:id="@+id/appwidget_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/appwidget_text"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/appwidget_text"
+            android:background="#09C" />
+    -->
 </RelativeLayout>
