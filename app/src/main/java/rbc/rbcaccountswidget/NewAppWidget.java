@@ -23,19 +23,44 @@ public class NewAppWidget extends AppWidgetProvider {
         Log.d(TAG, "onUpdate called");
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++) {
+            Intent serviceIntent = new Intent(context, NewAppWidgetUpdateService.class);
+            serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    appWidgetIds[i]);
+            context.startService(serviceIntent);
 
-            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-                    R.layout.new_app_widget);
+//            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
+//                    R.layout.new_app_widget);
 
-            Intent svcIntent = new Intent(context, NewAppWidgetService.class);
+//            Intent svcIntent = new Intent(context, NewAppWidgetService.class);
 //            svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
 //            svcIntent.setData(Uri.parse(svcIntent.toUri(Intent.URI_INTENT_SCHEME)));
 //            remoteViews.setRemoteAdapter(appWidgetIds[i], R.id.listViewWidget, svcIntent);
-            remoteViews.setRemoteAdapter(R.id.listViewWidget, svcIntent);
-            appWidgetManager.updateAppWidget(appWidgetIds[i], remoteViews);
+//            remoteViews.setRemoteAdapter(R.id.listViewWidget, svcIntent);
+//            appWidgetManager.updateAppWidget(appWidgetIds[i], remoteViews);
             //updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds);
+    }
+
+    private RemoteViews updateWidgetListView(Context context, int appWidgetId) {
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
+                R.layout.new_app_widget);
+        Intent svcIntent = new Intent(context, NewAppWidgetService.class);
+        remoteViews.setRemoteAdapter(R.id.listViewWidget, svcIntent);
+        return remoteViews;
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        if (intent.getAction().equals(ACTION_DATA_RECEIVED)) {
+            int appWidgetId = intent.getIntExtra(
+                    AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    AppWidgetManager.INVALID_APPWIDGET_ID);
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            RemoteViews remoteViews = updateWidgetListView(context, appWidgetId);
+            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+        }
     }
 
     @Override
