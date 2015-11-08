@@ -8,7 +8,7 @@ public class Utils {
     public static String FormatCurrency(Long value) {
         String s = value.toString();
         int len = s.length();
-        s = s.substring(0, len - 3) + "." + s.substring(len - 2, len - 1);
+        s = s.substring(0, len - 2) + "." + s.substring(len - 2, len);
         return s;
     }
 }
