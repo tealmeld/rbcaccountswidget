@@ -7,15 +7,15 @@
   },
   {
     "account" : "SAV:",
-    "balance" : "2551045",
-    "balance_diff" : "150000",
+    "balance" : "132551045",
+    "balance_diff" : "1150000",
     "time" : "10d9h"
   },
 
   {
     "account" : "VISA:",
     "balance" : "499999",
-    "balance_diff" : "100",
+    "balance_diff" : "29",
     "time" : "0h"
   }
 ]
