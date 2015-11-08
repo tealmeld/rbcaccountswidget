@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_cornered_background">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CHQ:"
+        android:id="@+id/widget_list_row_acc_name_textview"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:text="$ 2 300.00"
+        android:id="@+id/widget_list_row_acc_bal_textview"
+        android:textColor="#ffffff" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:text="+ $ 250.00"
+        android:id="@+id/widget_list_row_bal_diff_textview"
+        android:textColor="#ffffff" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:text="5d6h"
+        android:id="@+id/widget_list_row_time_textview"
+        android:textColor="#ffffff" />
+</RelativeLayout>

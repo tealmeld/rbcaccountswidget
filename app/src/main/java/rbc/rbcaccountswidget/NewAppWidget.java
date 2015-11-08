@@ -3,6 +3,9 @@ package rbc.rbcaccountswidget;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 /**
@@ -11,13 +14,28 @@ import android.widget.RemoteViews;
  */
 public class NewAppWidget extends AppWidgetProvider {
 
+    private static final String TAG = NewAppWidget.class.getSimpleName();
+
+    public static final String ACTION_DATA_RECEIVED = "rbc.rbcaccountswidget.ACTION_DATA_RECEIVED";
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
+        Log.d(TAG, "onUpdate called");
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++) {
-            updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
+
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
+                    R.layout.new_app_widget);
+
+            Intent svcIntent = new Intent(context, NewAppWidgetService.class);
+//            svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
+//            svcIntent.setData(Uri.parse(svcIntent.toUri(Intent.URI_INTENT_SCHEME)));
+//            remoteViews.setRemoteAdapter(appWidgetIds[i], R.id.listViewWidget, svcIntent);
+            remoteViews.setRemoteAdapter(R.id.listViewWidget, svcIntent);
+            appWidgetManager.updateAppWidget(appWidgetIds[i], remoteViews);
+            //updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
         }
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override

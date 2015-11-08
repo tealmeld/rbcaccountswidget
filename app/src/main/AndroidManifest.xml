@@ -12,6 +12,7 @@
         <receiver android:name=".NewAppWidget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="rbc.rbcaccountswidget.ACTION_DATA_RECEIVED" />
             </intent-filter>
 
             <meta-data
@@ -22,8 +23,12 @@
         <activity android:name=".NewAppWidgetConfigureActivity" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
+            </intent-filter>1
         </activity>
+
+        <service
+            android:name=".NewAppWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>
