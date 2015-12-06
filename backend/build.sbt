@@ -61,8 +61,14 @@ libraryDependencies ++= Seq(
   ws,
   "com.typesafe.play"   %% "play-slick"            % "1.1.0",
   "com.typesafe.play"   %% "play-slick-evolutions" % "1.1.0",
-  "com.zaxxer"          %  "HikariCP"              % "2.3.5"       % "compile",
-  "com.typesafe.slick"  %% "slick"                 % "3.1.0"       % "compile",
   "mysql"               %  "mysql-connector-java"  % "5.1.35",
   "org.flywaydb"        %  "flyway-core"           % "3.2.1"
 )
+
+libraryDependencies ++= {
+  val slickVersion = "3.1.0"
+  Seq(
+    "com.typesafe.slick"         %% "slick"                % slickVersion      % "compile",
+    "com.typesafe.slick"         %%  "slick-hikaricp"      % slickVersion      % "compile"
+  )
+}

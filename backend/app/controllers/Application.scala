@@ -14,7 +14,8 @@ import play.api.mvc._
  * @param uuidGenerator the UUID generator service we wish to receive.
  */
 
-class Application @Inject() (uuidGenerator: UUIDGenerator) extends Controller {
+class Application //@Inject() (uuidGenerator: UUIDGenerator)
+  extends Controller {
 
   private final val logger: Logger = LoggerFactory.getLogger(classOf[Application])
 
@@ -59,7 +60,8 @@ class Application @Inject() (uuidGenerator: UUIDGenerator) extends Controller {
 
   def randomUUID = Action {
     logger.info("calling UUIDGenerator...")
-    Ok(uuidGenerator.generate.toString)
+   // Ok(uuidGenerator.generate.toString)
+    Ok("")
   }
 
 }
